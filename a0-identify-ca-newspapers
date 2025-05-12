@@ -1,0 +1,22 @@
+#Author: Finn Dobkin
+#Description: The goal of this script is to use a multiprocessing pool to parse a series (n>1.4 million) of XML files. We will create a function for parsing, create a pool boject, and then call the function using that pool object to run via multiprocessing. 
+#Finally, we will filter the dataset to create a list of unique newspaper titles.
+
+#Import libraries
+#Libraries for parsing data
+from lxml import etree
+from bs4 import BeautifulSoup
+import pandas as pd
+import os
+#Libraries for multiprocessing
+import multiprocessing as mp
+from multiprocessing import Pool
+
+#Load data
+#Note: I had to executive this command multiple times for all documents to load.
+#Set corpus to folder 
+corpus = '/home/ec2-user/SageMaker/data/Identify_San_Francisco_Newspapers/'
+
+#Read in files
+input_files = os.listdir(corpus)
+print("Loaded", len(input_files), "documents.")
